@@ -1,6 +1,6 @@
 {
   "name": "@bangprovn/provider-upload-aws-s3-cloudfront",
-  "version": "4.8.1",
+  "version": "4.8.2",
   "description": "AWS S3 provider for strapi upload, with Cloudfront CDN support",
   "keywords": [
     "upload",

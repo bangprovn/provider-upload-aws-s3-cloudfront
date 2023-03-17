@@ -1,4 +1,4 @@
-# @strapi/provider-upload-aws-s3
+# @bangprovn/provider-upload-aws-s3-cloudfront
 
 ## Resources
 
@@ -15,10 +15,10 @@
 
 ```bash
 # using yarn
-yarn add @strapi/provider-upload-aws-s3
+yarn add @bangprovn/provider-upload-aws-s3-cloudfront
 
 # using npm
-npm install @strapi/provider-upload-aws-s3 --save
+npm install @bangprovn/provider-upload-aws-s3-cloudfront --save
 ```
 
 ## Configuration
@@ -38,14 +38,15 @@ module.exports = ({ env }) => ({
   // ...
   upload: {
     config: {
-      provider: 'aws-s3',
+      provider: "@bangprovn/provider-upload-aws-s3-cloudfront",
       providerOptions: {
-        accessKeyId: env('AWS_ACCESS_KEY_ID'),
-        secretAccessKey: env('AWS_ACCESS_SECRET'),
-        region: env('AWS_REGION'),
+        accessKeyId: env("AWS_ACCESS_KEY_ID"),
+        secretAccessKey: env("AWS_ACCESS_SECRET"),
+        region: env("AWS_REGION"),
         params: {
-          Bucket: env('AWS_BUCKET'),
+          Bucket: env("AWS_BUCKET"),
         },
+        cdn: env("AWS_CLOUDFRONT_CDN"),
       },
       actionOptions: {
         upload: {},
@@ -68,14 +69,15 @@ module.exports = ({ env }) => ({
   // ...
   upload: {
     config: {
-      provider: 'aws-s3',
+      provider: "@bangprovn/provider-upload-aws-s3-cloudfront",
       providerOptions: {
-        accessKeyId: env('SCALEWAY_ACCESS_KEY_ID'),
-        secretAccessKey: env('SCALEWAY_ACCESS_SECRET'),
-        endpoint: env('SCALEWAY_ENDPOINT'), // e.g. "s3.fr-par.scw.cloud"
+        accessKeyId: env("SCALEWAY_ACCESS_KEY_ID"),
+        secretAccessKey: env("SCALEWAY_ACCESS_SECRET"),
+        endpoint: env("SCALEWAY_ENDPOINT"), // e.g. "s3.fr-par.scw.cloud"
         params: {
-          Bucket: env('SCALEWAY_BUCKET'),
+          Bucket: env("SCALEWAY_BUCKET"),
         },
+        cdn: env("AWS_CLOUDFRONT_CDN"),
       },
     },
   },
@@ -93,25 +95,27 @@ Due to the default settings in the Strapi Security Middleware you will need to m
 module.exports = [
   // ...
   {
-    name: 'strapi::security',
+    name: "strapi::security",
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:'],
-          'img-src': [
+          "connect-src": ["'self'", "https:"],
+          "img-src": [
             "'self'",
-            'data:',
-            'blob:',
-            'dl.airtable.com',
-            'yourBucketName.s3.yourRegion.amazonaws.com',
+            "data:",
+            "blob:",
+            "dl.airtable.com",
+            "yourBucketName.s3.yourRegion.amazonaws.com",
+            // Your CDN url
           ],
-          'media-src': [
+          "media-src": [
             "'self'",
-            'data:',
-            'blob:',
-            'dl.airtable.com',
-            'yourBucketName.s3.yourRegion.amazonaws.com',
+            "data:",
+            "blob:",
+            "dl.airtable.com",
+            "yourBucketName.s3.yourRegion.amazonaws.com",
+            // Your CDN url
           ],
           upgradeInsecureRequests: null,
         },
