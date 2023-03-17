@@ -10,11 +10,11 @@
   ],
   "homepage": "https://strapi.io",
   "bugs": {
-    "url": "https://github.com/strapi/strapi/issues"
+    "url": "https://github.com/bangprovn/provider-upload-aws-s3-cloudfront/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/strapi/strapi.git"
+    "url": "git://github.com/bangprovn/provider-upload-aws-s3-cloudfront.git"
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": {
@@ -27,6 +27,10 @@
       "name": "Strapi Solutions SAS",
       "email": "hi@strapi.io",
       "url": "https://strapi.io"
+    },
+    {
+      "name": "bangprovn",
+      "email": "bangprovn@gmail.com"
     }
   ],
   "main": "./lib",
